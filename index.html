@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Node509 - Haiti's premier event ticketing platform. Discover concerts, festivals, and exclusive events across Haiti.">
+    <meta name="keywords" content="Haiti events, tickets, concerts, festivals, Carnival, Kompa, Node509">
+    <title>Node509 | Discover Haiti's Hottest Events</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===================== */
+        /* CSS RESET & VARIABLES */
+        /* ===================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d4aa;
+            --primary-dark: #00a885;
+            --secondary: #1a1a2e;
+            --secondary-light: #0f3460;
+            --accent: #ff6b6b;
+            --accent-hover: #ff5252;
+            --text-light: #ffffff;
+            --text-dark: #1a1a2e;
+            --text-muted: #6b7280;
+            --bg-dark: #0d0d1a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            --gradient-dark: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            --gradient-hero: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 50%, #0f3460 100%);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.25);
+            --shadow-glow: 0 0 30px rgba(0, 212, 170, 0.3);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===================== */
+        /* BUTTONS              */
+        /* ===================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--text-light);
+            box-shadow: 0 4px 20px rgba(0, 212, 170, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(0, 212, 170, 0.5);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--text-light);
+            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-accent:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(255, 107, 107, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--text-light);
+        }
+
+        .btn-sm {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* ===================== */
+        /* SECTION STYLES       */
+        /* ===================== */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--text-light), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===================== */
+        /* NAVIGATION           */
+        /* ===================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(13, 13, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            background: rgba(13, 13, 26, 0.98);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===================== */
+        /* HERO SECTION         */
+        /* ===================== */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-hero);
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(0, 212, 170, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(15, 52, 96, 0.5) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .hero-shape:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            top: 10%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .hero-shape:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            background: var(--accent);
+            bottom: 20%;
+            left: 5%;
+            animation-delay: -5s;
+        }
+
+        .hero-shape:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            background: var(--primary);
+            top: 50%;
+            left: 30%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -20px) rotate(5deg); }
+            50% { transform: translate(-10px, 20px) rotate(-5deg); }
+            75% { transform: translate(-20px, -10px) rotate(3deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 212, 170, 0.15);
+            border: 1px solid rgba(0, 212, 170, 0.3);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .hero-badge span {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--primary), #00ffcc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            max-width: 600px;
+        }
+
+        .hero-search {
+            display: flex;
+            gap: 10px;
+            max-width: 550px;
+            margin-bottom: 40px;
+        }
+
+        .hero-search-input {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 5px 5px 5px 25px;
+            transition: var(--transition);
+        }
+
+        .hero-search-input:focus-within {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .hero-search-input input {
+            flex: 1;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1rem;
+            padding: 12px 0;
+            outline: none;
+        }
+
+        .hero-search-input input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-search-input .btn {
+            padding: 12px 25px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .hero-stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ===================== */
+        /* FEATURED EVENTS      */
+        /* ===================== */
+        .featured-events {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, #12121f 100%);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .event-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .event-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 212, 170, 0.3);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .event-image {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        /* Placeholder gradients for event images - replace with real images */
+        .event-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .event-image-placeholder.concert { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .event-image-placeholder.romantic { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .event-image-placeholder.carnival { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .event-image-placeholder.jazz { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .event-image-placeholder.party { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+        .event-image-placeholder.festival { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
+
+        .event-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .event-favorite {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .event-favorite:hover {
+            background: var(--accent);
+        }
+
+        .event-content {
+            padding: 20px;
+        }
+
+        .event-date {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .event-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+
+        .event-venue {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .event-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .event-price {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .event-price strong {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        /* ===================== */
+        /* HOW IT WORKS         */
+        /* ===================== */
+        .how-it-works {
+            background: var(--secondary);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            transition: var(--transition);
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 25px;
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.3);
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin: 0 auto 20px;
+        }
+
+        .step-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ===================== */
+        /* CATEGORIES           */
+        /* ===================== */
+        .categories {
+            background: linear-gradient(180deg, #12121f 0%, var(--bg-dark) 100%);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .category-card:hover {
+            background: rgba(0, 212, 170, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .category-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        /* ===================== */
+        /* WHY NODE509          */
+        /* ===================== */
+        .why-us {
+            background: var(--secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 212, 170, 0.15);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===================== */
+        /* UPCOMING EVENTS      */
+        /* ===================== */
+        .upcoming-events {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, #12121f 100%);
+        }
+
+        .upcoming-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .upcoming-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .upcoming-item:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .upcoming-date {
+            min-width: 70px;
+            text-align: center;
+            padding: 15px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-sm);
+        }
+
+        .upcoming-date .day {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .upcoming-date .month {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .upcoming-info {
+            flex: 1;
+        }
+
+        .upcoming-info h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .upcoming-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .upcoming-price {
+            text-align: right;
+        }
+
+        .upcoming-price span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .upcoming-price strong {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        /* ===================== */
+        /* TESTIMONIALS         */
+        /* ===================== */
+        .testimonials {
+            background: var(--secondary);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+        }
+
+        .testimonial-stars {
+            color: #ffc107;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author-info h5 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .testimonial-author-info span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ===================== */
+        /* NEWSLETTER           */
+        /* ===================== */
+        .newsletter {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            margin-bottom: 15px;
+        }
+
+        .newsletter p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            max-width: 450px;
+            margin: 0 auto 20px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 25px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--primary);
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .newsletter-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ===================== */
+        /* FOOTER               */
+        /* ===================== */
+        .footer {
+            background: var(--bg-dark);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-copyright span {
+            color: var(--accent);
+        }
+
+        .footer-payments {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .payment-icon {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* ===================== */
+        /* MOBILE MENU          */
+        /* ===================== */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(13, 13, 26, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 15px 0;
+            color: var(--text-light);
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        /* ===================== */
+        /* RESPONSIVE           */
+        /* ===================== */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+
+            .hero-search {
+                flex-direction: column;
+            }
+
+            .hero-search-input {
+                width: 100%;
+            }
+
+            .hero-stats {
+                gap: 25px;
+            }
+
+            .nav-actions .btn {
+                display: none;
+            }
+
+            .upcoming-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .upcoming-price {
+                text-align: center;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand {
+                max-width: 100%;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===================== */
+        /* ANIMATIONS           */
+        /* ===================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 25px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 2px;
+            animation: scrollDown 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        @keyframes scrollDown {
+            0% { opacity: 1; top: 8px; }
+            100% { opacity: 0; top: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===================== -->
+    <!-- NAVIGATION           -->
+    <!-- ===================== -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="#" class="logo" aria-label="Node509 Home">
+                <div class="logo-icon">N5</div>
+                Node<span>509</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#events">Evenements</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#how-it-works">Kijan li mache</a></li>
+                <li><a href="#about">A propos</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-primary btn-sm">Konekte</a>
+                <button class="mobile-menu-btn" aria-label="Toggle menu" onclick="toggleMobileMenu()">
+                    <span id="menu-icon">&#9776;</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#events" onclick="toggleMobileMenu()">Evenements</a>
+        <a href="#categories" onclick="toggleMobileMenu()">Categories</a>
+        <a href="#how-it-works" onclick="toggleMobileMenu()">Kijan li mache</a>
+        <a href="#about" onclick="toggleMobileMenu()">A propos</a>
+        <a href="#" class="btn btn-primary" style="margin-top: 15px; text-align: center;">Konekte</a>
+    </div>
+
+    <!-- ===================== -->
+    <!-- HERO SECTION         -->
+    <!-- ===================== -->
+    <section class="hero" aria-label="Hero section">
+        <div class="hero-shapes">
+            <div class="hero-shape"></div>
+            <div class="hero-shape"></div>
+            <div class="hero-shape"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span></span>
+                    Platfom tikè #1 an Ayiti
+                </div>
+                <h1>Dekouvri <span class="highlight">Evènman</span> ki Pi Cho an Ayiti</h1>
+                <p class="hero-subtitle">Achte tikè pou konsè, festival, ak evènman eksklizif nan tout peyi a. Eksperyans ou pral inoublyab!</p>
+
+                <div class="hero-search">
+                    <div class="hero-search-input">
+                        <input type="text" placeholder="Chache evènman, atis, oswa kote..." aria-label="Search events">
+                        <button class="btn btn-accent btn-sm">Chache</button>
+                    </div>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">500+</div>
+                        <div class="hero-stat-label">Evènman</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">50,000+</div>
+                        <div class="hero-stat-label">Tikè Vann</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">100+</div>
+                        <div class="hero-stat-label">Atis</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- FEATURED EVENTS      -->
+    <!-- ===================== -->
+    <section class="featured-events" id="events" aria-label="Featured events">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Evènman ki Ap Vini</h2>
+                <p>Pa manke pi gwo evènman yo nan peyi a. Rezève plas ou kounye a!</p>
+            </div>
+
+            <div class="events-grid">
+                <!-- Event Card 1 -->
+                <article class="event-card fade-in">
+                    <div class="event-image">
+                        <!-- Replace with actual event image: <img src="kai-concert.jpg" alt="KAI Live Concert"> -->
+                        <div class="event-image-placeholder concert">🎤</div>
+                        <span class="event-badge">Hot</span>
+                        <button class="event-favorite" aria-label="Add to favorites">♡</button>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <span>📅</span> Vandredi, 6 Fevriye 2026 • 9:00 PM
+                        </div>
+                        <h3 class="event-title">KAI Live in Concert</h3>
+                        <div class="event-venue">
+                            <span>📍</span> Karibe Convention Center, Petyonvil
+                        </div>
+                        <div class="event-footer">
+                            <div class="event-price">
+                                Ap komanse <strong>2,500 HTG</strong>
+                            </div>
+                            <button class="btn btn-accent btn-sm">Achte Tikè</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Event Card 2 -->
+                <article class="event-card fade-in">
+                    <div class="event-image">
+                        <!-- Replace with actual event image -->
+                        <div class="event-image-placeholder romantic">💕</div>
+                        <span class="event-badge">Valentine</span>
+                        <button class="event-favorite" aria-label="Add to favorites">♡</button>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <span>📅</span> Samdi, 14 Fevriye 2026 • 8:00 PM
+                        </div>
+                        <h3 class="event-title">Rutshelle Valentine Special</h3>
+                        <div class="event-venue">
+                            <span>📍</span> Marriott Hotel, Turgeau
+                        </div>
+                        <div class="event-footer">
+                            <div class="event-price">
+                                Ap komanse <strong>3,000 HTG</strong>
+                            </div>
+                            <button class="btn btn-accent btn-sm">Achte Tikè</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Event Card 3 -->
+                <article class="event-card fade-in">
+                    <div class="event-image">
+                        <!-- Replace with actual event image -->
+                        <div class="event-image-placeholder carnival">🎭</div>
+                        <span class="event-badge">Kanaval</span>
+                        <button class="event-favorite" aria-label="Add to favorites">♡</button>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <span>📅</span> Vandredi, 20 Fevriye 2026 • 10:00 PM
+                        </div>
+                        <h3 class="event-title">Carnival Pre-Party 2026</h3>
+                        <div class="event-venue">
+                            <span>📍</span> Cine Triomphe, Champ de Mars
+                        </div>
+                        <div class="event-footer">
+                            <div class="event-price">
+                                Ap komanse <strong>1,500 HTG</strong>
+                            </div>
+                            <button class="btn btn-accent btn-sm">Achte Tikè</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Event Card 4 -->
+                <article class="event-card fade-in">
+                    <div class="event-image">
+                        <!-- Replace with actual event image -->
+                        <div class="event-image-placeholder romantic">🎵</div>
+                        <span class="event-badge">Valentine</span>
+                        <button class="event-favorite" aria-label="Add to favorites">♡</button>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <span>📅</span> Samdi, 14 Fevriye 2026 • 9:00 PM
+                        </div>
+                        <h3 class="event-title">Harmonik Love Edition</h3>
+                        <div class="event-venue">
+                            <span>📍</span> Club Indigo, Petyonvil
+                        </div>
+                        <div class="event-footer">
+                            <div class="event-price">
+                                Ap komanse <strong>2,000 HTG</strong>
+                            </div>
+                            <button class="btn btn-accent btn-sm">Achte Tikè</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Event Card 5 -->
+                <article class="event-card fade-in">
+                    <div class="event-image">
+                        <!-- Replace with actual event image -->
+                        <div class="event-image-placeholder jazz">🎷</div>
+                        <button class="event-favorite" aria-label="Add to favorites">♡</button>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <span>📅</span> Dimanch, 22 Fevriye 2026 • 7:00 PM
+                        </div>
+                        <h3 class="event-title">Jazz Night au Papaye</h3>
+                        <div class="event-venue">
+                            <span>📍</span> Papaye Restaurant, Petyonvil
+                        </div>
+                        <div class="event-footer">
+                            <div class="event-price">
+                                Ap komanse <strong>1,800 HTG</strong>
+                            </div>
+                            <button class="btn btn-accent btn-sm">Achte Tikè</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Event Card 6 -->
+                <article class="event-card fade-in">
+                    <div class="event-image">
+                        <!-- Replace with actual event image -->
+                        <div class="event-image-placeholder festival">🎪</div>
+                        <span class="event-badge">Festival</span>
+                        <button class="event-favorite" aria-label="Add to favorites">♡</button>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <span>📅</span> 28 Fevriye - 2 Mas 2026
+                        </div>
+                        <h3 class="event-title">Kanaval des Cayes 2026</h3>
+                        <div class="event-venue">
+                            <span>📍</span> Les Cayes, Sud
+                        </div>
+                        <div class="event-footer">
+                            <div class="event-price">
+                                Ap komanse <strong>500 HTG</strong>
+                            </div>
+                            <button class="btn btn-accent btn-sm">Achte Tikè</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn btn-outline">Wè Tout Evènman</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- HOW IT WORKS         -->
+    <!-- ===================== -->
+    <section class="how-it-works" id="how-it-works" aria-label="How it works">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Kijan Li Mache</h2>
+                <p>Achte tikè ou nan 3 etap senp</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card fade-in">
+                    <div class="step-icon">🔍</div>
+                    <div class="step-number">1</div>
+                    <h3>Jwenn Evènman Ou</h3>
+                    <p>Navige nan konsè, festival, fèt, ak plis ankò. Filtre pa dat, kategori, oswa kote.</p>
+                </div>
+
+                <div class="step-card fade-in">
+                    <div class="step-icon">🎫</div>
+                    <div class="step-number">2</div>
+                    <h3>Rezève Enstantatane</h3>
+                    <p>Checkout ki an sekirite ak plizyè opsyon peman - MonCash, Natcash, oswa kat.</p>
+                </div>
+
+                <div class="step-card fade-in">
+                    <div class="step-icon">📱</div>
+                    <div class="step-number">3</div>
+                    <h3>Resevwa E-Tikè Ou</h3>
+                    <p>Jwenn tikè ou touswit sou imèl ou. Montre QR code la lè ou rive nan evènman an.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- CATEGORIES           -->
+    <!-- ===================== -->
+    <section class="categories" id="categories" aria-label="Event categories">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Eksplore Pa Kategori</h2>
+                <p>Jwenn evènman ki koresponn ak enterè ou</p>
+            </div>
+
+            <div class="categories-grid">
+                <div class="category-card fade-in" tabindex="0" role="button" aria-label="Concerts category">
+                    <span class="category-icon">🎤</span>
+                    <h4>Konsè</h4>
+                </div>
+                <div class="category-card fade-in" tabindex="0" role="button" aria-label="Festivals category">
+                    <span class="category-icon">🎪</span>
+                    <h4>Festival</h4>
+                </div>
+                <div class="category-card fade-in" tabindex="0" role="button" aria-label="Jazz category">
+                    <span class="category-icon">🎷</span>
+                    <h4>Jazz</h4>
+                </div>
+                <div class="category-card fade-in" tabindex="0" role="button" aria-label="Theater category">
+                    <span class="category-icon">🎭</span>
+                    <h4>Teyat</h4>
+                </div>
+                <div class="category-card fade-in" tabindex="0" role="button" aria-label="Sports category">
+                    <span class="category-icon">🏟️</span>
+                    <h4>Espò</h4>
+                </div>
+                <div class="category-card fade-in" tabindex="0" role="button" aria-label="Nightlife category">
+                    <span class="category-icon">🎉</span>
+                    <h4>Lavi Nocturne</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- WHY NODE509          -->
+    <!-- ===================== -->
+    <section class="why-us" id="about" aria-label="Why choose Node509">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Poukisa Node509?</h2>
+                <p>Platfom ki pi konfyans pou achte tikè an Ayiti</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🔒</div>
+                    <h4>Peman Sekirize</h4>
+                    <p>Aksepte MonCash, Natcash, ak kat entènasyonal. Tranzaksyon ou yo pwoteje 100%.</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">⚡</div>
+                    <h4>E-Tikè Enstantane</h4>
+                    <p>Resevwa tikè ou nan kèk segonn apre peman an. Pa gen atant, pa gen pwoblèm.</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💬</div>
+                    <h4>Sipò 24/7</h4>
+                    <p>Ekip nou disponib tout tan pou ede ou ak nenpòt kesyon oswa pwoblèm.</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💰</div>
+                    <h4>Pi Bon Pri Garanti</h4>
+                    <p>Pri konpetitif ak pwomosyon eksklizif pou manm nou yo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- UPCOMING EVENTS      -->
+    <!-- ===================== -->
+    <section class="upcoming-events" aria-label="Upcoming events calendar">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Kalandriye Evènman</h2>
+                <p>Wè sa ki ap vini pwochen semèn yo</p>
+            </div>
+
+            <div class="upcoming-list">
+                <div class="upcoming-item fade-in">
+                    <div class="upcoming-date">
+                        <span class="day">06</span>
+                        <span class="month">Fev</span>
+                    </div>
+                    <div class="upcoming-info">
+                        <h4>KAI Live in Concert</h4>
+                        <p>Karibe Convention Center, Petyonvil</p>
+                    </div>
+                    <div class="upcoming-price">
+                        <span>Ap komanse</span>
+                        <strong>2,500 HTG</strong>
+                    </div>
+                </div>
+
+                <div class="upcoming-item fade-in">
+                    <div class="upcoming-date">
+                        <span class="day">14</span>
+                        <span class="month">Fev</span>
+                    </div>
+                    <div class="upcoming-info">
+                        <h4>Rutshelle Valentine Special</h4>
+                        <p>Marriott Hotel, Turgeau</p>
+                    </div>
+                    <div class="upcoming-price">
+                        <span>Ap komanse</span>
+                        <strong>3,000 HTG</strong>
+                    </div>
+                </div>
+
+                <div class="upcoming-item fade-in">
+                    <div class="upcoming-date">
+                        <span class="day">14</span>
+                        <span class="month">Fev</span>
+                    </div>
+                    <div class="upcoming-info">
+                        <h4>Harmonik Love Edition</h4>
+                        <p>Club Indigo, Petyonvil</p>
+                    </div>
+                    <div class="upcoming-price">
+                        <span>Ap komanse</span>
+                        <strong>2,000 HTG</strong>
+                    </div>
+                </div>
+
+                <div class="upcoming-item fade-in">
+                    <div class="upcoming-date">
+                        <span class="day">20</span>
+                        <span class="month">Fev</span>
+                    </div>
+                    <div class="upcoming-info">
+                        <h4>Carnival Pre-Party 2026</h4>
+                        <p>Cine Triomphe, Champ de Mars</p>
+                    </div>
+                    <div class="upcoming-price">
+                        <span>Ap komanse</span>
+                        <strong>1,500 HTG</strong>
+                    </div>
+                </div>
+
+                <div class="upcoming-item fade-in">
+                    <div class="upcoming-date">
+                        <span class="day">22</span>
+                        <span class="month">Fev</span>
+                    </div>
+                    <div class="upcoming-info">
+                        <h4>Jazz Night au Papaye</h4>
+                        <p>Papaye Restaurant, Petyonvil</p>
+                    </div>
+                    <div class="upcoming-price">
+                        <span>Ap komanse</span>
+                        <strong>1,800 HTG</strong>
+                    </div>
+                </div>
+
+                <div class="upcoming-item fade-in">
+                    <div class="upcoming-date">
+                        <span class="day">28</span>
+                        <span class="month">Fev</span>
+                    </div>
+                    <div class="upcoming-info">
+                        <h4>Kanaval des Cayes 2026</h4>
+                        <p>Les Cayes, Sud</p>
+                    </div>
+                    <div class="upcoming-price">
+                        <span>Ap komanse</span>
+                        <strong>500 HTG</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- TESTIMONIALS         -->
+    <!-- ===================== -->
+    <section class="testimonials" aria-label="Customer testimonials">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Sa Kliyan Nou Yo Di</h2>
+                <p>Eksperyans reyèl moun ki te sèvi ak Node509</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Process la tèlman fasil! Mwen te achte tikè pou konsè Kai a nan kèk minit. E-tikè a te rive nan bwat imèl mwen touswit. Mèsi Node509!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JP</div>
+                        <div class="testimonial-author-info">
+                            <h5>Jean-Pierre M.</h5>
+                            <span>Pòtoprens</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Finalman yon platfom tikè ki fonksyone byen an Ayiti! Mwen renmen ke yo aksepte MonCash. Pa gen pwoblèm ankò pou achte tikè."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MC</div>
+                        <div class="testimonial-author-info">
+                            <h5>Marie-Claire D.</h5>
+                            <span>Petyonvil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Sipò kliyan la excellent! Lè mwen te gen yon kesyon, yo te reponn mwen rapidman. Mwen rekòmande Node509 bay tout zanmi m yo."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SB</div>
+                        <div class="testimonial-author-info">
+                            <h5>Stanley B.</h5>
+                            <span>Cap-Haitien</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- NEWSLETTER           -->
+    <!-- ===================== -->
+    <section class="newsletter" aria-label="Newsletter signup">
+        <div class="container">
+            <div class="newsletter-content fade-in">
+                <h2>Pa Manke Okenn Evènman</h2>
+                <p>Enskri pou resevwa dènye nouvèl sou evènman, pwomosyon eksklizif, ak tikè anvan lòt moun.</p>
+                <form class="newsletter-form" onsubmit="return handleNewsletterSubmit(event)">
+                    <input type="email" placeholder="Antre imèl ou..." required aria-label="Email address">
+                    <button type="submit" class="btn btn-accent">Enskri</button>
+                </form>
+                <p class="newsletter-note">Rejwenn 10,000+ moun ki renmen mizik. Nou pa voye spam.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- FOOTER               -->
+    <!-- ===================== -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-icon">N5</div>
+                        Node<span>509</span>
+                    </a>
+                    <p>Platfom tikè #1 an Ayiti. Dekouvri, rezève, ak viv pi bon eksperyans evènman yo.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram"><span>📷</span></a>
+                        <a href="#" aria-label="Facebook"><span>📘</span></a>
+                        <a href="#" aria-label="Twitter"><span>🐦</span></a>
+                        <a href="#" aria-label="TikTok"><span>🎵</span></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Konpayi</h4>
+                    <ul>
+                        <li><a href="#">A propos</a></li>
+                        <li><a href="#">Karyè</a></li>
+                        <li><a href="#">Pres</a></li>
+                        <li><a href="#">Kontakte nou</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Sipò</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Èd</a></li>
+                        <li><a href="#">Ranbousman</a></li>
+                        <li><a href="#">Kontakte Sipò</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Tèm ak Kondisyon</a></li>
+                        <li><a href="#">Politik Konfidansyalite</a></li>
+                        <li><a href="#">Politik Cookie</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026 Node509. Fèt ak <span>❤️</span> an Ayiti</p>
+                <div class="footer-payments">
+                    <span class="payment-icon">MonCash</span>
+                    <span class="payment-icon">Natcash</span>
+                    <span class="payment-icon">Visa</span>
+                    <span class="payment-icon">Mastercard</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================== -->
+    <!-- MAIN SCRIPTS         -->
+    <!-- ===================== -->
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('active');
+            icon.innerHTML = menu.classList.contains('active') ? '✕' : '☰';
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+        // Newsletter form handler
+        function handleNewsletterSubmit(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input').value;
+            alert('Mèsi! Ou enskri avèk: ' + email);
+            e.target.reset();
+            return false;
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- ===================== -->
+    <!-- NODE509 CHATBOT      -->
+    <!-- ===================== -->
+    <script>
+        (function () {
+            // =====================
+            // CONFIGURATION
+            // =====================
+            const WEBHOOK_URL = 'https://n8n-production-6197.up.railway.app/webhook/97fe3c8c-bfab-48b1-823a-5f9fa3a8bca4/chat';
+
+            // =====================
+            // STYLES
+            // =====================
+            const styles = `
+            #n509-widget * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+            /* Welcome Bubble */
+            #n509-welcome {
+                position: fixed;
+                bottom: 90px;
+                right: 20px;
+                background: white;
+                padding: 14px 18px;
+                border-radius: 12px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                z-index: 99997;
+                animation: n509SlideIn 0.5s ease;
+                max-width: 220px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+            #n509-welcome:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+            }
+            #n509-welcome.hidden {
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(10px);
+            }
+            #n509-welcome::after {
+                content: '';
+                position: absolute;
+                bottom: -8px;
+                right: 25px;
+                width: 0;
+                height: 0;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 10px solid white;
+            }
+            #n509-welcome h4 {
+                color: #1a1a2e;
+                font-size: 0.95rem;
+                font-weight: 600;
+                margin-bottom: 4px;
+            }
+            #n509-welcome p {
+                color: #666;
+                font-size: 0.8rem;
+                line-height: 1.4;
+            }
+            #n509-welcome-close {
+                position: absolute;
+                top: 6px;
+                right: 8px;
+                background: none;
+                border: none;
+                font-size: 1.1rem;
+                color: #999;
+                cursor: pointer;
+                line-height: 1;
+                padding: 2px;
+            }
+            #n509-welcome-close:hover {
+                color: #333;
+            }
+            @keyframes n509SlideIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            /* Toggle Button */
+            #n509-toggle { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #00d4aa, #00a885); border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(0,212,170,0.4); z-index: 99999; transition: all 0.3s; }
+            #n509-toggle:hover { transform: scale(1.1); }
+            #n509-toggle svg { width: 28px; height: 28px; fill: white; }
+            #n509-toggle .close { display: none; }
+            #n509-toggle.active .chat { display: none; }
+            #n509-toggle.active .close { display: block; }
+
+            /* Notification Badge */
+            #n509-badge {
+                position: absolute;
+                top: -2px;
+                right: -2px;
+                width: 18px;
+                height: 18px;
+                background: #ff6b6b;
+                border-radius: 50%;
+                border: 2px solid white;
+                animation: n509Pulse 2s infinite;
+            }
+            #n509-badge.hidden { display: none; }
+            @keyframes n509Pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+            }
+
+            /* Chat Window */
+            #n509-window { position: fixed; bottom: 90px; right: 20px; width: 370px; height: 520px; background: #fff; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.25); display: flex; flex-direction: column; overflow: hidden; z-index: 99998; opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.95); transition: all 0.3s; }
+            #n509-window.active { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+            #n509-header { background: linear-gradient(135deg, #1a1a2e, #0f3460); color: white; padding: 16px; display: flex; align-items: center; gap: 12px; }
+            #n509-avatar { width: 42px; height: 42px; background: linear-gradient(135deg, #00d4aa, #00a885); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; color: white; }
+            #n509-header-text h3 { font-size: 0.95rem; font-weight: 600; }
+            #n509-header-text span { font-size: 0.7rem; color: #00d4aa; }
+            #n509-messages { flex: 1; padding: 16px; overflow-y: auto; background: #f5f5f5; display: flex; flex-direction: column; gap: 10px; }
+            .n509-msg { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 0.85rem; line-height: 1.45; animation: n509Fade 0.3s; }
+            @keyframes n509Fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+            .n509-msg.bot { background: white; color: #333; align-self: flex-start; border-bottom-left-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+            .n509-msg.user { background: linear-gradient(135deg, #00d4aa, #00a885); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+            .n509-typing { display: flex; gap: 4px; padding: 14px 18px; }
+            .n509-typing span { width: 7px; height: 7px; background: #00d4aa; border-radius: 50%; animation: n509Bounce 1.4s infinite; }
+            .n509-typing span:nth-child(2) { animation-delay: 0.2s; }
+            .n509-typing span:nth-child(3) { animation-delay: 0.4s; }
+            @keyframes n509Bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+            #n509-input-area { padding: 12px; background: white; border-top: 1px solid #eee; display: flex; gap: 8px; }
+            #n509-input { flex: 1; padding: 10px 14px; border: 2px solid #e0e0e0; border-radius: 20px; font-size: 0.85rem; outline: none; }
+            #n509-input:focus { border-color: #00d4aa; }
+            #n509-send { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #00d4aa, #00a885); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+            #n509-send:disabled { background: #ccc; }
+            #n509-send svg { width: 18px; height: 18px; fill: white; }
+            @media (max-width: 480px) {
+                #n509-window { width: 100%; height: 100%; bottom: 0; right: 0; border-radius: 0; }
+                #n509-welcome { bottom: 90px; right: 15px; max-width: 200px; }
+            }
+        `;
+
+            // =====================
+            // HTML
+            // =====================
+            const html = `
+            <div id="n509-widget">
+                <!-- Welcome Bubble -->
+                <div id="n509-welcome">
+                    <button id="n509-welcome-close">×</button>
+                    <h4>👋 Byenveni nan Node509!</h4>
+                    <p>Bezwen èd pou jwenn evènman oswa tikè? Chat avèk nou!</p>
+                </div>
+
+                <!-- Toggle Button -->
+                <button id="n509-toggle" aria-label="Open chat">
+                    <span id="n509-badge"></span>
+                    <svg class="chat" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+                    <svg class="close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                </button>
+
+                <!-- Chat Window -->
+                <div id="n509-window" role="dialog" aria-label="Chat with Node509">
+                    <div id="n509-header">
+                        <div id="n509-avatar">N5</div>
+                        <div id="n509-header-text">
+                            <h3>Node509 Assistant</h3>
+                            <span>● Online</span>
+                        </div>
+                    </div>
+                    <div id="n509-messages" aria-live="polite"></div>
+                    <div id="n509-input-area">
+                        <input type="text" id="n509-input" placeholder="Ekri mesaj ou..." autocomplete="off" aria-label="Type your message">
+                        <button id="n509-send" aria-label="Send message"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+            // =====================
+            // INJECT WIDGET
+            // =====================
+            const styleEl = document.createElement('style');
+            styleEl.textContent = styles;
+            document.head.appendChild(styleEl);
+
+            const widgetEl = document.createElement('div');
+            widgetEl.innerHTML = html;
+            document.body.appendChild(widgetEl);
+
+            // =====================
+            // LOGIC
+            // =====================
+            const toggle = document.getElementById('n509-toggle');
+            const chatWindow = document.getElementById('n509-window');
+            const messages = document.getElementById('n509-messages');
+            const input = document.getElementById('n509-input');
+            const send = document.getElementById('n509-send');
+            const welcome = document.getElementById('n509-welcome');
+            const welcomeClose = document.getElementById('n509-welcome-close');
+            const badge = document.getElementById('n509-badge');
+
+            let sessionId = localStorage.getItem('n509_sid') || 'n509_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('n509_sid', sessionId);
+
+            let isOpen = false;
+            let firstOpen = true;
+
+            // Check if welcome was dismissed before
+            const welcomeDismissed = localStorage.getItem('n509_welcome_dismissed');
+            if (welcomeDismissed) {
+                welcome.classList.add('hidden');
+                badge.classList.add('hidden');
+            }
+
+            function hideWelcome() {
+                welcome.classList.add('hidden');
+                badge.classList.add('hidden');
+                localStorage.setItem('n509_welcome_dismissed', 'true');
+            }
+
+            function addMsg(type, text) {
+                const div = document.createElement('div');
+                div.className = 'n509-msg ' + type;
+                div.innerHTML = text.replace(/\n/g, '<br>');
+                messages.appendChild(div);
+                messages.scrollTop = messages.scrollHeight;
+            }
+
+            function showTyping() {
+                const div = document.createElement('div');
+                div.className = 'n509-msg bot';
+                div.id = 'n509-typing';
+                div.innerHTML = '<div class="n509-typing"><span></span><span></span><span></span></div>';
+                messages.appendChild(div);
+                messages.scrollTop = messages.scrollHeight;
+            }
+
+            function hideTyping() {
+                const t = document.getElementById('n509-typing');
+                if (t) t.remove();
+            }
+
+            // Close welcome bubble
+            welcomeClose.addEventListener('click', function (e) {
+                e.stopPropagation();
+                hideWelcome();
+            });
+
+            // Click welcome bubble to open chat
+            welcome.addEventListener('click', function () {
+                hideWelcome();
+                if (!isOpen) {
+                    toggleChat();
+                }
+            });
+
+            function toggleChat() {
+                isOpen = !isOpen;
+                toggle.classList.toggle('active', isOpen);
+                chatWindow.classList.toggle('active', isOpen);
+
+                if (isOpen) {
+                    hideWelcome();
+                    input.focus();
+                    if (firstOpen) {
+                        firstOpen = false;
+                        setTimeout(() => addMsg('bot', "👋 Bonjou! Mwen se asistan Node509.\n\n🎫 Evènman yo\n💰 Pri tikè\n📍 Kote evènman yo\n🎤 Atis k ap jwe\n\nKijan mwen ka ede w jodi a?"), 400);
+                    }
+                }
+            }
+
+            toggle.addEventListener('click', toggleChat);
+
+            async function sendMsg() {
+                const text = input.value.trim();
+                if (!text) return;
+
+                addMsg('user', text);
+                input.value = '';
+                send.disabled = true;
+                showTyping();
+
+                try {
+                    const res = await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ action: 'sendMessage', sessionId: sessionId, chatInput: text })
+                    });
+                    hideTyping();
+                    const data = await res.json();
+                    const reply = data.output || data.text || data.message || data.response || 'Message received';
+                    addMsg('bot', reply);
+                } catch (e) {
+                    hideTyping();
+                    addMsg('bot', "😔 Eskize m, gen yon erè. Tanpri eseye ankò.");
+                }
+                send.disabled = false;
+                input.focus();
+            }
+
+            send.addEventListener('click', sendMsg);
+            input.addEventListener('keypress', function (e) { if (e.key === 'Enter') sendMsg(); });
+
+            // Show welcome bubble after 2 seconds if not dismissed
+            if (!welcomeDismissed) {
+                welcome.classList.add('hidden');
+                setTimeout(function () {
+                    welcome.classList.remove('hidden');
+                }, 2000);
+            }
+        })();
+    </script>
+</body>
+</html>
