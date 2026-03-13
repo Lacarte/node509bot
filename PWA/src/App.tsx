@@ -1,29 +1,34 @@
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import FeaturedEvents from './components/FeaturedEvents'
-import HowItWorks from './components/HowItWorks'
-import Categories from './components/Categories'
-import WhyUs from './components/WhyUs'
-import UpcomingEvents from './components/UpcomingEvents'
-import Testimonials from './components/Testimonials'
-import Newsletter from './components/Newsletter'
-import Footer from './components/Footer'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import EventDetail from './pages/EventDetail'
+import Checkout from './pages/Checkout'
+import MyTickets from './pages/MyTickets'
+import Search from './pages/Search'
+import Profile from './pages/Profile'
+import Notifications from './pages/Notifications'
+import BottomNav from './components/BottomNav'
 import Chatbot from './components/Chatbot'
+import Toast from './components/Toast'
+import Onboarding from './components/Onboarding'
+import OfflineBanner from './components/OfflineBanner'
 
 export default function App() {
   return (
-    <>
-      <Navbar />
-      <Hero />
-      <FeaturedEvents />
-      <HowItWorks />
-      <Categories />
-      <WhyUs />
-      <UpcomingEvents />
-      <Testimonials />
-      <Newsletter />
-      <Footer />
+    <BrowserRouter>
+      <OfflineBanner />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/event/:id" element={<EventDetail />} />
+        <Route path="/checkout/:id" element={<Checkout />} />
+        <Route path="/tickets" element={<MyTickets />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/notifications" element={<Notifications />} />
+      </Routes>
+      <BottomNav />
       <Chatbot />
-    </>
+      <Toast />
+      <Onboarding />
+    </BrowserRouter>
   )
 }

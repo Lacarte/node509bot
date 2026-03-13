@@ -1,0 +1,119 @@
+.notif-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg-dark);
+  padding-bottom: 80px;
+}
+
+.notif-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.notif-header h1 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  flex: 1;
+}
+.notif-mark-all {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.notif-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 80px 20px;
+  gap: 8px;
+}
+.notif-empty-icon { font-size: 2.5rem; margin-bottom: 4px; }
+.notif-empty h3 { font-size: 1rem; font-weight: 600; }
+.notif-empty p { font-size: 0.82rem; color: var(--text-muted); }
+
+.notif-list {
+  padding: 8px 0;
+}
+
+.notif-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: #fff;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.notif-item:hover { background: var(--bg-surface); }
+.notif-item--unread {
+  background: rgba(140, 199, 58, 0.04);
+}
+
+.notif-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.notif-icon--purchase {
+  background: rgba(140, 199, 58, 0.15);
+  color: var(--primary);
+}
+.notif-icon--reminder {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+.notif-icon--info {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted);
+}
+
+.notif-content {
+  flex: 1;
+  min-width: 0;
+}
+.notif-content strong {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.notif-content p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.notif-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.notif-time {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.notif-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+}

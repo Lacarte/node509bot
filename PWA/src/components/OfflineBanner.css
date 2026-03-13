@@ -1,0 +1,36 @@
+.offline-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  animation: bannerSlide 0.3s ease-out;
+}
+
+.offline-banner--offline {
+  background: rgba(255, 107, 107, 0.15);
+  border-bottom: 1px solid rgba(255, 107, 107, 0.3);
+  color: var(--accent);
+}
+
+.offline-banner--back {
+  background: rgba(140, 199, 58, 0.15);
+  border-bottom: 1px solid rgba(140, 199, 58, 0.3);
+  color: var(--primary);
+  animation: bannerSlide 0.3s ease-out, bannerFadeOut 0.3s ease-in 2s forwards;
+}
+
+@keyframes bannerSlide {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+@keyframes bannerFadeOut {
+  to { opacity: 0; transform: translateY(-100%); }
+}
