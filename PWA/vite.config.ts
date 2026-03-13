@@ -1,15 +1,21 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import fs from 'node:fs'
 
 export default defineConfig({
   server: {
     host: true,
+    https: {
+      key: fs.readFileSync('.cert/key.pem'),
+      cert: fs.readFileSync('.cert/cert.pem'),
+    },
   },
   plugins: [
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      devOptions: { enabled: true },
       includeAssets: ['icons/logo.svg', 'icons/logo.png'],
       manifest: {
         name: 'Node509 - Haiti\'s Premier Event Platform',
@@ -19,7 +25,7 @@ export default defineConfig({
         display: 'standalone',
         orientation: 'portrait-primary',
         background_color: '#0d0d1a',
-        theme_color: '#8CC73A',
+        theme_color: '#22C55E',
         lang: 'ht',
         categories: ['entertainment', 'events', 'tickets'],
         icons: [

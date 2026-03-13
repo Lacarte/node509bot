@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import EventDetail from './pages/EventDetail'
@@ -13,6 +14,8 @@ import Onboarding from './components/Onboarding'
 import OfflineBanner from './components/OfflineBanner'
 
 export default function App() {
+  const [chatOpen, setChatOpen] = useState(false)
+
   return (
     <BrowserRouter>
       <OfflineBanner />
@@ -25,8 +28,8 @@ export default function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/notifications" element={<Notifications />} />
       </Routes>
-      <BottomNav />
-      <Chatbot />
+      <BottomNav onChatToggle={() => setChatOpen(o => !o)} />
+      <Chatbot open={chatOpen} onClose={() => setChatOpen(false)} />
       <Toast />
       <Onboarding />
     </BrowserRouter>

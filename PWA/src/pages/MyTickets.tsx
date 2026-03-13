@@ -24,20 +24,31 @@ export default function MyTickets() {
   return (
     <div className="my-tickets">
       <header className="tickets-header">
-        <h1>Tikè Mwen</h1>
-        <span className="ticket-count">{tickets.length}</span>
+        <div className="tickets-header-bg" />
+        <div className="tickets-header-content">
+          <h1>Tikè Mwen</h1>
+          {tickets.length > 0 && <span className="ticket-count">{tickets.length}</span>}
+        </div>
+        <p className="tickets-subtitle">Tikè ou achte yo ap parèt isit la</p>
       </header>
 
       {tickets.length === 0 ? (
         <div className="tickets-empty">
-          <div className="empty-icon">🎫</div>
+          <div className="empty-visual">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>
+          </div>
           <h2>Pa gen tikè</h2>
           <p>Ou poko achte okenn tikè. Ale nan paj dakèy pou jwenn evènman.</p>
         </div>
       ) : (
         <div className="tickets-list">
-          {tickets.map(t => (
-            <div key={t.id} className="ticket-card" onClick={() => setExpanded(expanded === t.id ? null : t.id)}>
+          {tickets.map((t, i) => (
+            <div
+              key={t.id}
+              className="ticket-card"
+              style={{ animationDelay: `${i * 60}ms` }}
+              onClick={() => setExpanded(expanded === t.id ? null : t.id)}
+            >
               <div className="ticket-top">
                 <div className="ticket-event-visual" style={{ background: t.event.gradient }}>
                   <span>{t.event.emoji}</span>
@@ -63,15 +74,15 @@ export default function MyTickets() {
                     </div>
                     <div className="td-row">
                       <span>Peman</span>
-                      <span>{t.paymentMethod}</span>
+                      <span className="td-value">{t.paymentMethod}</span>
                     </div>
                     <div className="td-row">
                       <span>Telefòn</span>
-                      <span>+509 {t.phone}</span>
+                      <span className="td-value">+509 {t.phone}</span>
                     </div>
                     <div className="td-row">
                       <span>Achte</span>
-                      <span>{formatPurchaseDate(t.purchasedAt)}</span>
+                      <span className="td-value">{formatPurchaseDate(t.purchasedAt)}</span>
                     </div>
                   </div>
                 </div>

@@ -27,19 +27,19 @@
   align-items: center;
   gap: 14px;
   padding: 16px;
-  background: var(--bg-surface);
+  background: rgba(255,255,255,0.03);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   margin-bottom: 24px;
 }
 .checkout-event-visual {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   flex-shrink: 0;
 }
 .checkout-event h3 {
@@ -59,9 +59,11 @@
 }
 
 .checkout-label {
-  font-size: 0.88rem;
-  font-weight: 500;
+  font-size: 0.82rem;
+  font-weight: 600;
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 /* Qty Picker */
@@ -69,7 +71,7 @@
   display: flex;
   align-items: center;
   gap: 0;
-  background: var(--bg-surface);
+  background: rgba(255,255,255,0.03);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -86,12 +88,12 @@
   cursor: pointer;
   transition: background var(--transition);
 }
-.qty-btn:hover { background: var(--bg-surface-hover); }
+.qty-btn:hover { background: rgba(255,255,255,0.06); }
 .qty-value {
   width: 56px;
   text-align: center;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   border-left: 1px solid var(--border);
   border-right: 1px solid var(--border);
   line-height: 48px;
@@ -100,7 +102,7 @@
 /* Summary */
 .checkout-summary {
   padding: 16px;
-  background: var(--bg-surface);
+  background: rgba(255,255,255,0.03);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   display: flex;
@@ -162,7 +164,7 @@
 .input-wrapper {
   display: flex;
   align-items: center;
-  background: var(--bg-surface);
+  background: rgba(255,255,255,0.03);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -188,7 +190,7 @@
   letter-spacing: 0.08em;
 }
 .pin-input {
-  background: var(--bg-surface);
+  background: rgba(255,255,255,0.03);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   color: #fff;
@@ -257,6 +259,20 @@
   gap: 10px;
   padding: 20px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.checkout-success::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(34,197,94,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
 }
 .success-icon {
   width: 80px;
@@ -269,23 +285,23 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 8px;
-  box-shadow: 0 0 60px var(--primary-glow);
-  animation: successBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0 40px rgba(34,197,94,0.15);
+  animation: successBounce 0.5s ease-out;
   position: relative;
 }
 @keyframes successBounce {
-  0% { transform: scale(0); opacity: 0; }
-  50% { transform: scale(1.2); }
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.05); }
   100% { transform: scale(1); opacity: 1; }
 }
-.checkout-success h2 { animation: fadeUp 0.4s ease-out 0.2s both; }
-.checkout-success p { animation: fadeUp 0.4s ease-out 0.3s both; }
-.checkout-success strong { animation: fadeUp 0.4s ease-out 0.35s both; }
-.success-total { animation: fadeUp 0.4s ease-out 0.4s both; }
-.success-note { animation: fadeUp 0.4s ease-out 0.5s both; }
-.checkout-success .btn { animation: fadeUp 0.4s ease-out 0.6s both; }
+.checkout-success h2 { animation: fadeUp 0.35s ease-out 0.2s both; }
+.checkout-success p { animation: fadeUp 0.35s ease-out 0.3s both; }
+.checkout-success strong { animation: fadeUp 0.35s ease-out 0.35s both; }
+.success-total { animation: fadeUp 0.35s ease-out 0.4s both; }
+.success-note { animation: fadeUp 0.35s ease-out 0.5s both; }
+.checkout-success .btn { animation: fadeUp 0.35s ease-out 0.6s both; }
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 .checkout-success h2 {
@@ -308,7 +324,7 @@
 .success-note {
   font-size: 0.8rem !important;
   color: var(--text-muted) !important;
-  background: var(--bg-surface);
+  background: rgba(255,255,255,0.03);
   padding: 12px 16px;
   border-radius: var(--radius-md);
   border: 1px solid var(--border);

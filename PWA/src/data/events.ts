@@ -168,10 +168,10 @@ export function generateQR(ticketId: string): string {
   for (let r = 0; r < cells; r++) {
     for (let c = 0; c < cells; c++) {
       if (r === 0 || r === cells-1 || c === 0 || c === cells-1 || rand() > 0.5) {
-        rects += `<rect x="${c*cellSize}" y="${r*cellSize}" width="${cellSize}" height="${cellSize}" fill="#8CC73A"/>`
+        rects += `<rect x="${c*cellSize}" y="${r*cellSize}" width="${cellSize}" height="${cellSize}" fill="#22C55E"/>`
       }
     }
   }
 
-  return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}"><rect width="${size}" height="${size}" fill="#0b0b14"/>${rects}</svg>`)}`
+  return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}"><rect width="${size}" height="${size}" fill="#0A0A12"/>${rects}</svg>`)}`
 }

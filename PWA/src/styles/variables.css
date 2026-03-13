@@ -1,29 +1,58 @@
 :root {
-  --primary: #8CC73A;
-  --primary-dark: #6fa62d;
-  --primary-glow: rgba(140, 199, 58, 0.35);
+  /* Primary: emerald green — refined, professional */
+  --primary: #22C55E;
+  --primary-dark: #16A34A;
+  --primary-light: #4ADE80;
+  --primary-glow: rgba(34, 197, 94, 0.20);
+
+  /* Secondary */
   --secondary: #1a1a2e;
   --secondary-light: #16213e;
-  --accent: #ff6b6b;
-  --accent-hover: #ff5252;
-  --text-light: #ffffff;
+
+  /* Accent: warm amber */
+  --accent: #F59E0B;
+  --accent-hover: #D97706;
+
+  /* Text */
+  --text-light: #F8FAFC;
   --text-dark: #1a1a2e;
-  --text-muted: rgba(255, 255, 255, 0.55);
-  --bg-dark: #0b0b14;
+  --text-muted: rgba(248, 250, 252, 0.55);
+  --text-secondary: rgba(248, 250, 252, 0.75);
+
+  /* Backgrounds */
+  --bg-dark: #0A0A12;
   --bg-surface: rgba(255, 255, 255, 0.04);
   --bg-surface-hover: rgba(255, 255, 255, 0.08);
-  --border: rgba(255, 255, 255, 0.07);
-  --border-hover: rgba(140, 199, 58, 0.4);
-  --gradient-primary: linear-gradient(135deg, #8CC73A, #6fa62d);
-  --gradient-hero: linear-gradient(160deg, #0b0b14 0%, #1a1a2e 40%, #16213e 100%);
-  --gradient-section-alt: linear-gradient(180deg, #0f0f1c 0%, #0b0b14 100%);
-  --shadow-glow: 0 0 40px rgba(140, 199, 58, 0.15);
-  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+  --bg-elevated: rgba(255, 255, 255, 0.06);
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(34, 197, 94, 0.35);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #22C55E, #16A34A);
+  --gradient-hero: linear-gradient(160deg, #0A0A12 0%, #111827 40%, #1a1a2e 100%);
+  --gradient-section-alt: linear-gradient(180deg, #0f0f1c 0%, #0A0A12 100%);
+
+  /* Shadows: neutral, no colored glow */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.25);
+
+  /* Border Radius: tightened, professional */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
   --radius-full: 9999px;
-  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --font: 'Poppins', system-ui, -apple-system, sans-serif;
+
+  /* Transitions: smooth, not bouncy */
+  --transition: 0.2s ease;
+  --transition-slow: 0.35s ease;
+
+  /* Typography */
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
 }

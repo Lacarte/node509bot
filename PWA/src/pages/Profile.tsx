@@ -29,10 +29,14 @@ export default function Profile() {
   return (
     <div className="profile-page">
       <header className="profile-header">
-        <div className="profile-avatar">
-          <img src="/icons/logo.svg" alt="Node509" />
+        <div className="profile-header-bg" />
+        <div className="profile-header-row">
+          <img src="/icons/logo-symbol.svg" alt="Node509" className="profile-logo" />
+          <div>
+            <h1>Pwofil</h1>
+            <p className="profile-tagline">Node509 · Tikè Evènman</p>
+          </div>
         </div>
-        <h1>Pwofil</h1>
       </header>
 
       {/* Stats */}
@@ -115,7 +119,7 @@ export default function Profile() {
       <div className="profile-about">
         <img src="/icons/logo.svg" alt="" className="about-logo" />
         <p className="about-version">Node509 v1.0.0</p>
-        <p className="about-tagline">Fèt ak ❤️ an Ayiti</p>
+        <p className="about-tagline">Fèt ak kè an Ayiti</p>
       </div>
     </div>
   )

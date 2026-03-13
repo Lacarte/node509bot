@@ -15,14 +15,14 @@
 }
 
 .offline-banner--offline {
-  background: rgba(255, 107, 107, 0.15);
-  border-bottom: 1px solid rgba(255, 107, 107, 0.3);
+  background: rgba(245, 158, 11, 0.15);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.3);
   color: var(--accent);
 }
 
 .offline-banner--back {
-  background: rgba(140, 199, 58, 0.15);
-  border-bottom: 1px solid rgba(140, 199, 58, 0.3);
+  background: rgba(34, 197, 94, 0.12);
+  border-bottom: 1px solid rgba(34, 197, 94, 0.25);
   color: var(--primary);
   animation: bannerSlide 0.3s ease-out, bannerFadeOut 0.3s ease-in 2s forwards;
 }

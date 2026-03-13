@@ -2,15 +2,15 @@
   position: fixed;
   inset: 0;
   z-index: 500;
-  background: linear-gradient(160deg, #0b0b14 0%, #1a1a2e 50%, #16213e 100%);
+  background: linear-gradient(160deg, #0A0A12 0%, #111827 50%, #1a1a2e 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  animation: onboardIn 0.4s ease-out;
+  animation: onboardIn 0.35s ease-out;
 }
 .onboarding--exit {
-  animation: onboardOut 0.4s ease-in forwards;
+  animation: onboardOut 0.35s ease-in forwards;
 }
 
 @keyframes onboardIn {
@@ -18,8 +18,8 @@
   to { opacity: 1; }
 }
 @keyframes onboardOut {
-  from { opacity: 1; transform: scale(1); }
-  to { opacity: 0; transform: scale(1.05); }
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 .onboarding-skip {
@@ -43,11 +43,11 @@
   text-align: center;
   padding: 0 40px;
   gap: 16px;
-  animation: slideIn 0.35s ease-out;
+  animation: slideIn 0.3s ease-out;
 }
 
 @keyframes slideIn {
-  from { opacity: 0; transform: translateX(30px); }
+  from { opacity: 0; transform: translateX(20px); }
   to { opacity: 1; transform: translateX(0); }
 }
 
@@ -55,13 +55,12 @@
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: rgba(140, 199, 58, 0.1);
-  border: 2px solid rgba(140, 199, 58, 0.3);
+  background: rgba(34, 197, 94, 0.08);
+  border: 2px solid rgba(34, 197, 94, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 12px;
-  box-shadow: 0 0 60px var(--primary-glow);
 }
 .onboarding-logo {
   width: 52px;
@@ -69,9 +68,9 @@
 }
 
 .onboarding-emoji {
-  font-size: 4rem;
+  font-size: 2.5rem;
   margin-bottom: 12px;
-  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.4));
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.3));
 }
 
 .onboarding-slide h2 {
@@ -113,7 +112,7 @@
 .onboarding-dot.active {
   background: var(--primary);
   width: 24px;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
 }
 
 .onboarding-footer .btn {

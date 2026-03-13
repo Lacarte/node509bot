@@ -31,6 +31,11 @@ export default function Search() {
   return (
     <div className="search-page">
       <header className="search-header">
+        <div className="search-header-bg" />
+        <div className="search-hero">
+          <h1>Chache</h1>
+          <p className="search-subtitle">Jwenn evènman, atis, ak kote</p>
+        </div>
         <div className="search-input-wrap">
           <svg className="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
           <input
@@ -58,6 +63,12 @@ export default function Search() {
         </div>
       </header>
 
+      <div className="search-results-label">
+        {!loading && query && (
+          <span>{filtered.length} rezilta{query ? ` pou "${query}"` : ''}</span>
+        )}
+      </div>
+
       <section className="search-results">
         {loading ? (
           <>
@@ -66,10 +77,16 @@ export default function Search() {
             <EventCardSkeleton />
           </>
         ) : filtered.length > 0 ? (
-          filtered.map(e => <EventCard key={e.id} event={e} />)
+          filtered.map((e, i) => (
+            <div key={e.id} className="search-card-anim" style={{ animationDelay: `${i * 50}ms` }}>
+              <EventCard event={e} />
+            </div>
+          ))
         ) : (
           <div className="search-empty">
-            <div className="search-empty-icon">🔍</div>
+            <div className="search-empty-visual">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
             <h3>Pa gen rezilta</h3>
             <p>Eseye chache yon lòt bagay</p>
           </div>
